@@ -12,9 +12,8 @@
 #define SERVOINC 45
 
 int c = 0;
-int servoOn = 0;
-int servoPos = 0;
-int IRdetected = 0;
+int nextTurn = STRAIGHT;
+int IRdetected = FALSE;
 int IRlevel = 0;
 int IRthresh = 300;
 int turnDecision;
@@ -29,13 +28,8 @@ void setup() {
 void loop() {
   followTape();
 
-  if ( ! (c % TIRDETECT)) {
-    IRlevel = analogRead(IRFRONT);
-    IRdetected = IRlevel > IRthresh;
-  }
-
-  if ((!(c % TSERVO)) && (servoOn || IRdetected)) {
-    handleServo():
+  if ((!(c % TSERVO)) && approachingInt) {
+    nextTurn = handleFrontIR(servo.read(IRSERVO), IRlevels, analogRead(IRFRONT));
   }
 
   if (! (c % TPASSDETECT)) {

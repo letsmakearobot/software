@@ -1,23 +1,14 @@
-void handleServo(){
-  IRlevels[servoPos / SERVOINC] = IRlevel;
-
-  if (servoPos == SERVOSTART) {
-    RCServo0.write(servoPos);
-    servoOn = true;
-    servoPos += SERVOINC;
-  }
+int handleServo(int servoPos, int IRarray[], int IRlevel) {
+  IRarray[servoPos / SERVOINC] = IRlevel;
 
   if (servoPos == SERVOEND) {
+    servoPos = SERVOSTART;
     servoOn = 0;
     IRdetected = 0;
-    turnDecision = findMax(IRlevels, SERVOEND/SERVOINC);
+  } else {
 
-    if (turnDecision > (2.0/3*SERVOEND/SERVOINC))
-      turnDecision == RIGHT;
-    else if (turnDecision > (1.0/3*SERVOEND/SERVOINC))
-      turnDecision == STRAIGHT;
-    else
-      turnDecision == LEFT;
   }
+
+  return servoOn;
 }
 
