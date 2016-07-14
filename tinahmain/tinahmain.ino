@@ -18,7 +18,7 @@ int IRlevel = 0;
 int IRthresh = 300;
 int turnDecision;
 
-int IRlevels[SERVOEND/SERVOINC];
+int IRlevels[SERVOEND/SERVOINC+1];
 
 void setup() {
   // put your setup code here, to run once:
