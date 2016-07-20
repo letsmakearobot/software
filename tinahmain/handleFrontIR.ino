@@ -3,10 +3,10 @@ int handleFrontIR(int servoPos, int IRarray[], int IRlevel) {
   IRarray[servoPos / SERVOINC] = IRlevel;
 
   if (servoPos == SERVOEND) {
-    RCservo0.write(SERVOSTART);
+    RCServo0.write(SERVOSTART);
     nextTurn = decideTurn(IRarray);
   } else {
-    RCservo0.write(servoPos + SERVOINC);
+    RCServo0.write(servoPos + SERVOINC);
   }
 
   return nextTurn;
