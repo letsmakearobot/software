@@ -15,6 +15,7 @@ void detectPassenger(){
     }
     motor.speed(LMOTOR, -200);
     motor.speed(RMOTOR, 200);
+
   } else if (analogRead(IRRIGHT) > IR_THRESH) {
     if(analogRead(IRRIGHT)<IRVal){
       hardStop();

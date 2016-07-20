@@ -36,8 +36,7 @@ int con = 0;
 int err = 0;
 int recerr = 0;
 int lerr = 0;
-
-// WHO THE FUCK KNOWS
+//TIMING
 int q = 0;
 int m = 0;
 
@@ -48,6 +47,9 @@ int IRdetected = FALSE;
 int IRlevel = 0;
 int IRthresh = 300;
 int turnDecision;
+
+int RInt;
+int LInt;
 
 int IRlevels[SERVOEND/SERVOINC+1];
 
@@ -155,13 +157,14 @@ void loop() {
         labelPrint("RI", rightint, "L", l_motor, "R", r_motor);
       }
     }
-
-    if (numPassengers >= 3)
-      detectPassenger();
-
-    if (leftint || rightint)
+        
+    //handle Intersection
+    lInt = !digitalRead(LINTTAPE);
+    rInt = !digitalRead(RINTTAPE);
+    if(IInt || rInt){
       handleIntersect();
-
+    }
+    
     c++;
   }
 
