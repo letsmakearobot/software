@@ -156,8 +156,12 @@ void loop() {
       }
     }
 
-    handleIntersect();
-    
+    if (numPassengers >= 3)
+      detectPassenger();
+
+    if (leftint || rightint)
+      handleIntersect();
+
     c++;
   }
 

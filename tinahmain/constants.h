@@ -23,14 +23,14 @@
 #define GRIPSERVO 1
 #define IRSERVO 2
 
-#define IRFRONT 0
-#define IRLEFT 1
-#define IRRIGHT1 2
-#define IRRIGHT2 3
-#define IRGROUP 4
-#define POSARM1 5
-#define POSARM2 6
-#define IRBEACON 7
+#define IRINTFRONT 0
+#define IRINTLEFT 1
+#define IRINTRIGHT 2
+#define IRLEFT 3
+#define IRRIGHT 4
+#define IRGROUP 5
+#define POSARM1 6
+#define POSARM2 7
 
 #define KNOB1 6
 #define KNOB2 7

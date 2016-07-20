@@ -4,28 +4,36 @@
 int IRVal = 0;
 
 void detectPassenger(){
-  if (analogRead(IRLEFT)> IR_THRESH)
-  {
+  if (analogRead(IRLEFT)> IR_THRESH) {
     //passenger detected on the left
     //turn on a dime
+    if(analogRead(IRLEFT)<IRVal){
+      hardStop();
+      IRVal = 0;
+    } else {
+      IRVal = analogRead(IRLEFT);
+    }
     motor.speed(LMOTOR, -200);
     motor.speed(RMOTOR, 200);
-  }
-
-  if (analogRead(IRRIGHT1)> IR_THRESH)
-  {
-    if(analogRead(IRRIGHT1)<IRVal){
+  } else if (analogRead(IRRIGHT) > IR_THRESH) {
+    if(analogRead(IRRIGHT)<IRVal){
       hardStop();
-      pickupPassenger();
+      IRVal = 0;
     } else {
-      IRVal = analogRead(IRRIGHT1);
+      IRVal = analogRead(IRRIGHT);
     }
   }
+  pickupPassenger();
 }
 
 void pickupPassenger() {
-  // adjustGripper();
-  adjustChassis();
+  adjustGripper();
+
+  armExtend();
+  if (digitalRead(GRIPPERCONTACT)) {
+    gripperClose();
+    armRaise();
+  }
 }
 
 void adjustGripper(){
@@ -44,16 +52,20 @@ void adjustGripper(){
     armServo += servoSpeed;
     if (armServo > maxArmServo)
       break;
+
     prevLoIR = gripIR - MAX_NOISE_AMP;
     prevHiIR = gripIR + MAX_NOISE_AMP;
     gripIR = analogRead(GRIPPERIR);
   } while (gripIR > prevLoIR && gripIR < prevHiIR);
 }
 
-void adjustChassis() {
+void adjustChassis(int overShoot) {
   int gripIR = analogRead(GRIPPERIR);
   int prevLoIR, prevHiIR;
+
   int motorSpeed = 50;
+  if (overShoot)
+    motorSpeed = -50;
 
   do {
     motor.speed(LMOTOR, motorSpeed);
