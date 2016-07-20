@@ -1,1 +1,7 @@
-gripper.ino
+void gripperClose() {
+
+}
+
+void gripperOpen() {
+
+}
