@@ -1,20 +1,21 @@
 void handleIntersect() {
   int temp;
-  int lInt = !digitalRead(LINTTAPE);
-  int rInt = !digitalRead(RINTTAPE);
+  leftint = !digitalRead(LINTTAPE);
+  rightint = !digitalRead(RINTTAPE);
 
-  if (lInt) {
+  if (leftint) {
     hardLeft();
 
     temp = nodeMap[lastNode][nextNode][0];
     lastNode = nextNode;
     nextNode = temp;
   }
-  else if (rInt) {
+  else if (rightint) {
     hardRight();
 
     temp = nodeMap[lastNode][nextNode][1];
     lastNode = nextNode;
     nextNode = temp;
-  }
+  } 
+  // if nothing happened, then false positive! keep chilling.
 }
