@@ -1,7 +1,6 @@
 #define IR_THRESH 100
 #define MAX_NOISE_AMP 10
 
-int IRVal = 0;
 void detectPassenger(){
   if (analogRead(IRLEFT) > IR_THRESH) {
     //passenger detected on the left

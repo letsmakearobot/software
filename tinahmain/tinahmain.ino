@@ -8,16 +8,11 @@
 #define TIRDETECT 10
 #define TPASSDETECT 300
 
-#define SERVOSTART 0
-#define SERVOEND 180
-#define SERVOINC 45
-
-// TUNING VARIABLES
-int thresh = 500;
-int lbase = 120;
-int rbase = 120;
-int kp = 120;
-int kd = 10;
+// TUNED VARIABLES (make them constants in final)
+int lbase = 150;
+int rbase = 150;
+int kp = 60;
+int kd = 60;
 
 // INPUT/OUTPUT VARIABLES
 int left = 0;
@@ -36,23 +31,19 @@ int con = 0;
 int err = 0;
 int recerr = 0;
 int lerr = 0;
+
 //TIMING
 int q = 0;
 int m = 0;
 
+// Clock
 int c = 0;
-int approachingInt = FALSE;
-int nextTurn = STRAIGHT;
-int IRdetected = FALSE;
+
+int IRVal = 0;
 int IRlevel = 0;
 int IRthresh = 300;
 int turnDecision;
-
-int RInt;
-int LInt;
-
-int IRlevels[SERVOEND/SERVOINC+1];
-
+int numPassengers = 0;
 
 int nodeMap[21][21][3] = {
   {{0,0,0},{-1,6,2},{0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0},{11,-1,16},{0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0}},
@@ -146,7 +137,7 @@ void loop() {
 //        rbase = knob(7)-300;
         LCD.clear();
         LCD.setCursor(0,0);
-        labelPrint("LN", lastNode, "NN", nextNode, "P", kp);
+        labelPrint("LM", l_motor, "RM", r_motor, "P", kp);
         LCD.setCursor(0,1);
         labelPrint("D", kd, "L", lbase, "R", rbase);
       } else {
@@ -154,17 +145,17 @@ void loop() {
         LCD.setCursor(0,0);
         labelPrint("LT", left, "RT", right, "LI", leftint);
         LCD.setCursor(0,1);
-        labelPrint("RI", rightint, "L", l_motor, "R", r_motor);
+        labelPrint("RI", rightint, "LN", lastNode, "NN", nextNode);
       }
     }
-        
-    //handle Intersection
-    lInt = !digitalRead(LINTTAPE);
-    rInt = !digitalRead(RINTTAPE);
-    if(IInt || rInt){
+
+    if(leftint || rightint){
       handleIntersect();
     }
-    
+
+    if (numPassengers <= 3) {
+      detectPassengerTest();
+    }
     c++;
   }
 

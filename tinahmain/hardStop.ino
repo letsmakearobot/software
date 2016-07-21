@@ -8,30 +8,63 @@ void hardStop(){
   motor.stop(RMOTOR);
 }
 void hardRight() {
-  LCD.clear();
-  LCD.print("hard right!");
+  int cc=0;
+  motor.speed(LMOTOR, 250);
+  motor.speed(RMOTOR, 0);
 
-  motor.speed(RMOTOR, 250);
-  motor.speed(LMOTOR, 0);
-  delay(150);
-
+  // while on tape
   while(!digitalRead(RTAPE)) {
-    motor.speed(RMOTOR, 300);
-    motor.speed(LMOTOR, 0);
+    LCD.clear();
+    LCD.print("hard right! ");
+    LCD.print(cc);
+    LCD.setCursor(0,1);
+    labelPrint("RT", !digitalRead(RTAPE), "LI", !digitalRead(LINTTAPE), "RI", !digitalRead(RINTTAPE));
+    motor.speed(LMOTOR, 300);
+    motor.speed(RMOTOR, 0);
+    cc++;
+  }
+  // while off tape
+  while(digitalRead(RTAPE)) {
+    LCD.clear();
+    LCD.print("hard right! ");
+    LCD.print(cc);
+    LCD.setCursor(0,1);
+    labelPrint("RT", !digitalRead(RTAPE), "LI", !digitalRead(LINTTAPE), "RI", !digitalRead(RINTTAPE));
+    motor.speed(LMOTOR, 300);
+    motor.speed(RMOTOR, 0);
+    cc++;
   }
 }
 
 void hardLeft() {
+  int cc=0;
   LCD.clear();
-  LCD.print("hard left!");
-
-  motor.speed(LMOTOR, 250);
-  motor.speed(RMOTOR, 0);
-  delay(150);
+  LCD.print("hard right! ");
+  LCD.print(cc);
+  LCD.setCursor(0,1);
+//  labelPrint("RT", !digitalRead(RTAPE), "LI", !digitalRead(LINTTAPE), "RI", !digitalRead(RINTTAPE));
+  motor.speed(RMOTOR, 250);
+  motor.speed(LMOTOR, 0);
 
   while(!digitalRead(LTAPE)) {
-    motor.speed(LMOTOR, 300);
-    motor.speed(RMOTOR, 0);
+    LCD.clear();
+    LCD.print("hard left! ");
+    LCD.print(cc);
+    LCD.setCursor(0,1);
+    labelPrint("LT", !digitalRead(LTAPE), "RT", !digitalRead(RTAPE), "LI", !digitalRead(RINTTAPE));
+    motor.speed(RMOTOR, 300);
+    motor.speed(LMOTOR, 0);
+    cc++;
+  }
+  while(digitalRead(LTAPE)) {
+    LCD.clear();
+    LCD.print("hard left! ");
+    LCD.print(cc);
+    LCD.setCursor(0,1);
+    labelPrint("LT", !digitalRead(LTAPE), "RT", !digitalRead(RTAPE), "LI", !digitalRead(RINTTAPE));
+    motor.speed(RMOTOR, 300);
+    motor.speed(LMOTOR, 0);
+    cc++;
   }
 }
 
