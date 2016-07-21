@@ -28,18 +28,16 @@ void detectPassenger(){
 void pickupPassenger() {
   adjustGripper();
 
-  armExtend();
-  if (digitalRead(BGRIPBUMP)) {
-    gripperClose();
-    armRaise();
-  }
+  armGetPassenger();
+  armDropPassenger();
+  numPassengers++;
 }
 
 void adjustGripper(){
   int armServo = 0;
   int maxArmServo = 180;
-  int armShoulder = analogRead(POSARM1);
-  int armElbow = analogRead(POSARM2);
+  int armShoulder = analogRead(ARMPOS1);
+  int armElbow = analogRead(ARMPOS2);
   int gripIR = analogRead(IRGRIP);
 
   int prevLoIR, prevHiIR;

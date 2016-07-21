@@ -22,8 +22,8 @@
 #define IRLEFT 3
 #define IRRIGHT 4
 #define IRGRIP 5
-#define POSARM1 6
-#define POSARM2 7
+#define ARMPOS1 6
+#define ARMPOS2 7
 
 // MOTOR OUTPUTS
 #define LMOTOR 0
@@ -41,6 +41,8 @@
 #define ARMSERVMIN 0
 #define ARMSERVMAX 180
 #define ARMSERVREST 135
+#define ARMBOX0 120
+#define ARMBOX1 150
 
 // ARM POSITION PARAMETERS
 #define ARMREST1 538
