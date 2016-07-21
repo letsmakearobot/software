@@ -1,3 +1,4 @@
+// DIGITAL INPUTS
 #define LTAPE 0
 #define RTAPE 1
 #define LINTTAPE 2
@@ -9,20 +10,12 @@
 #define LBUMP 8
 #define RBUMP 9
 #define BOXMOTOR 10
-#define LENC1 11
-#define LENC2 12
-#define RENC1 13
-#define RENC2 14
+//#define LENC1 11
+//#define LENC2 12
+//#define RENC1 13
+//#define RENC2 14
 
-#define LMOTOR 0
-#define RMOTOR 1
-#define ARMMOTOR1 2
-#define ARMMOTOR2 3
-
-#define ARMSERVO 0
-#define GRIPSERVO 1
-#define IRSERVO 2
-
+// ANALOG INPUTS
 #define IRFRONT 0
 #define IRFRONTLEFT 1
 #define IRFRONTRIGHT 2
@@ -32,13 +25,45 @@
 #define POSARM1 6
 #define POSARM2 7
 
+// MOTOR OUTPUTS
+#define LMOTOR 0
+#define RMOTOR 1
+#define ARMMOTOR1 2
+#define ARMMOTOR2 3
+
+// SERVOS
+#define ARMSERVO 0
+#define GRIPSERVO 1
+
+// ARM SERVO PARAMETERS
+#define GRIPSERVMIN 0
+#define GRIPSERVMAX 49
+#define ARMSERVMIN 0
+#define ARMSERVMAX 180
+#define ARMSERVREST 135
+
+// ARM POSITION PARAMETERS
+#define ARMREST1 538
+#define ARMREST2 453
+#define ARMLOWIN1 574
+#define ARMLOWIN2 442
+#define ARMLOWOUT1 511
+#define ARMLOWOUT2 298
+#define ARMHIGHIN1 722
+#define ARMHIGHIN2 249
+#define ARMHIGHOUT1 555
+#define ARMHIGHOUT2 83
+#define ARMMOTORSPEED 20
+
+// KNOB INPUTS
 #define KNOB1 6
 #define KNOB2 7
 
-// corresponds to map indices
+// MAP INDICES
 #define LEFT 0
 #define RIGHT 1
 #define STRAIGHT 2
 
+// BOOLEANS
 #define TRUE 1
 #define FALSE 0
