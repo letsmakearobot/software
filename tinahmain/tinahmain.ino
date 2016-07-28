@@ -41,7 +41,7 @@ int c = 0;
 
 int IRVal = 0;
 int IRlevel = 0;
-int IRthresh = 300;
+int IRthresh = 300; // !!! to be set to a constant
 int turnDecision;
 int numPassengers = 0;
 
@@ -75,6 +75,9 @@ int nextNode;
 void setup() {
   // put your setup code here, to run once:
   #include <phys253setup.txt>
+  while(!(stopbutton() && startbutton()){
+    IRTest();
+  }
   initializeRobot();
 }
 
