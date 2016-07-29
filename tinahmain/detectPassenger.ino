@@ -37,7 +37,6 @@ void adjustGripper(){
   int armServo = 0;
   int maxArmServo = 180;
   int armShoulder = analogRead(ARMPOS1);
-  int armElbow = analogRead(ARMPOS2);
   int gripIR = analogRead(IRGRIP);
 
   int prevLoIR, prevHiIR;
