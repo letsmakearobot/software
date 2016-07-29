@@ -75,7 +75,7 @@ int nextNode;
 void setup() {
   // put your setup code here, to run once:
   #include <phys253setup.txt>
-  while(!(stopbutton() && startbutton()){
+  while(!(stopbutton() && startbutton())){
     IRTest();
   }
   initializeRobot();
