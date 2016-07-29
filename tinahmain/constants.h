@@ -1,15 +1,18 @@
 // DIGITAL INPUTS
-#define LTAPE 0
-#define RTAPE 1
-#define LINTTAPE 2
-#define RINTTAPE 3
-#define LGRIPBUMP 4
+#define FBUMP 0
+#define LBUMP 1
+#define RBUMP 2
+#define FLBUMP 3
+#define FRBUMP 4
+//#define LGRIPBUMP 4
 #define RGRIPBUMP 5
 #define BGRIPBUMP 6
-#define FBUMP 7
-#define LBUMP 8
-#define RBUMP 9
-#define BOXMOTOR 10
+//#define 7
+#define LTAPE 8
+#define RTAPE 9
+#define LINTTAPE 10
+#define RINTTAPE 11
+//#define BOXMOTOR 10
 //#define LENC1 11
 //#define LENC2 12
 //#define RENC1 13

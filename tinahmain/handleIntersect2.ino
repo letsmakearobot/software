@@ -29,6 +29,7 @@ void handleIntersect2() {
 }
 
 // scan intersection with IR detectors to choose the one with highest intensity
+// reutnr 
 int scanIntersection(boolean right, boolean left, boolean front){
   int lIntIr = -1;
   int rIntIr = -1;
