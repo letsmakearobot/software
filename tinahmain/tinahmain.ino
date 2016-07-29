@@ -150,15 +150,18 @@ void loop() {
         LCD.setCursor(0,1);
         labelPrint("RI", rightint, "LN", lastNode, "NN", nextNode);
       }
+    }    
+
+    if (numPassengers) {
+      turnDecision = nextDestDropoff(lastNode, nextNode);
+    } else {
+      turnDecision = nextDestIntersect(lastNode, nextNode);
     }
 
     if(leftint || rightint){
       handleIntersect();
     }
 
-    if (numPassengers <= 3) {
-      detectPassengerTest();
-    }
     c++;
   }
 
