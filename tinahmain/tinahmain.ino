@@ -149,6 +149,8 @@ void loop() {
       }
     }    
 
+    detectPassenger();
+    
     if (numPassengers) {
       turnDecision = nextDestDropoff(lastNode, nextNode);
     } else {

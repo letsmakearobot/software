@@ -5,10 +5,10 @@
 #define FRBUMP 3
 #define RBUMP 4
 #define GRIPBUMP 5
-#define LTAPE 6
-#define RTAPE 7
-#define LINTTAPE 8
-#define RINTTAPE 9
+#define LTAPE 8
+#define RTAPE 9
+#define LINTTAPE 10
+#define RINTTAPE 11
 //#define LENC1 11
 //#define LENC2 12
 //#define RENC1 13
