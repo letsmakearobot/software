@@ -125,7 +125,6 @@ void loop() {
     if (collision) {
       handleCollision();
     }
-
     c++;
   }
 
