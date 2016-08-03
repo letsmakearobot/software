@@ -33,10 +33,8 @@ void armGoTo(int shoulderDest, int elbowDest) {
   int elbowMax = elbowDest + ARMTOLERANCE;
 
   int shoulder = analogRead(ARMPOS1);
-  int elbow = analogRead(ARMPOS2);
   
-  while ((shoulder > shoulderMax) && (shoulder < shoulderMin) 
-    && (elbow > elbowMax) && (elbow < elbowMin)){
+  while ((shoulder > shoulderMax) && (shoulder < shoulderMin)){
     if (shoulder > shoulderMax) {
       motor.speed(ARMMOTOR1, ARMSPEEDNEG);
     } else if (shoulder < shoulderMin) {
@@ -44,17 +42,10 @@ void armGoTo(int shoulderDest, int elbowDest) {
     } else {
       motor.speed(ARMMOTOR1, 0);
     }
-    if (elbow > elbowMax) {
-      motor.speed(ARMMOTOR2, ARMSPEEDNEG);
-    } else if (elbow < elbowMin) {
-      motor.speed(ARMMOTOR2, ARMSPEEDPOS);
-    } else {
-      motor.speed(ARMMOTOR2, 0);
-    }
-    shoulder = analogRead(ARMPOS1);
-    elbow = analogRead(ARMPOS2);
 
-    if (digitalRead(BGRIPBUMP))
+    shoulder = analogRead(ARMPOS1);
+
+    if (digitalRead(GRIPBUMP))
       break;
   }
 

@@ -150,6 +150,14 @@ void loop() {
         LCD.setCursor(0, 1);
         labelPrint("RI", rightint, "LN", lastNode, "NN", nextNode);
       }
+    }    
+
+    detectPassenger();
+    
+    if (numPassengers) {
+      turnDecision = nextDestDropoff(lastNode, nextNode);
+    } else {
+      turnDecision = nextDestIntersect(lastNode, nextNode);
     }
 
     if (leftint || rightint) {
@@ -158,12 +166,6 @@ void loop() {
 
     if (collision) {
       handleCollision();
-    }
-
-    detectPassengerTest();
-
-    if (numPassengers) {
-      findNextNodeToDest(currentNode, nextNode);
     }
 
     c++;

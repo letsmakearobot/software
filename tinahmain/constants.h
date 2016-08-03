@@ -1,32 +1,27 @@
 // DIGITAL INPUTS
-#define FBUMP 0
-#define LBUMP 1
-#define RBUMP 2
-#define FLBUMP 3
-#define FRBUMP 4
-//#define LGRIPBUMP 4
-#define RGRIPBUMP 5
-#define BGRIPBUMP 6
-//#define 7
+#define LBUMP 0
+#define LFBUMP 1
+#define FBUMP 2
+#define FRBUMP 3
+#define RBUMP 4
+#define GRIPBUMP 5
 #define LTAPE 8
 #define RTAPE 9
 #define LINTTAPE 10
 #define RINTTAPE 11
-//#define BOXMOTOR 10
 //#define LENC1 11
 //#define LENC2 12
 //#define RENC1 13
 //#define RENC2 14
 
 // ANALOG INPUTS
-#define IRFRONT 0
-#define IRFRONTLEFT 1
-#define IRFRONTRIGHT 2
-#define IRLEFT 3
-#define IRRIGHT 4
-#define IRGRIP 5
-#define ARMPOS1 6
-#define ARMPOS2 7
+#define IRFRONT 1
+#define IRFRONTLEFT 2
+#define IRFRONTRIGHT 3
+#define IRLEFT 4
+#define IRRIGHT 5
+#define IRGRIP 6
+#define ARMPOS1 7
 
 // MOTOR OUTPUTS
 #define LMOTOR 0
