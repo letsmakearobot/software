@@ -7,10 +7,10 @@ int nextDestIntersect(int currentNode, int nextNode){
   if(nodeMap[currentNode][nextNode][LEFT] > -1){
     lIntIr = analogRead(IRFRONTLEFT);
   }
-  if(nodeMap[currentNode][nextNode][LEFT] > -1){
+  if(nodeMap[currentNode][nextNode][RIGHT] > -1){
     rIntIr  = analogRead(IRFRONTRIGHT);
   }
-  if(nodeMap[currentNode][nextNode][LEFT] > -1){
+  if(nodeMap[currentNode][nextNode][STRAIGHT] > -1){
     fIntIr = analogRead(IRFRONT);
   }
   int Irs[3] = {lIntIr, rIntIr, fIntIr};

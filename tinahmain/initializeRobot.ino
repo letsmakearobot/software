@@ -53,14 +53,14 @@ void initializeRobot() {
     
     if (!digitalRead(LINTTAPE)) {
       hardLeft();
-      lastNode = 10;
-      nextNode = 11;
+      lastNode = 0;
+      nextNode = 10;
       break;
     }
     if(!digitalRead(RINTTAPE)) {
       hardRight();
-      lastNode = 15;
-      nextNode = 14;
+      lastNode = 4;
+      nextNode = 15;
       break;
     }
 
