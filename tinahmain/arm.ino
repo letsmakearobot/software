@@ -1,24 +1,29 @@
 void armGetPassenger() {
-  armGoTo(ARMLOWIN1, ARMLOWIN2);
-  armGoTo(ARMLOWOUT1, ARMLOWOUT2);
+  int currentAngle = ARMSERVOUT;
+  armRotate(currentAngle);
+  int armStatus = armGoTo(ARMPOSOUT);
+  while (armStatus != STRAIGHT) {
+    // arm hit left switch (left from arm POV)
+    if (armStatus == LEFT) {
+      currentAngle = currentAngle + ARMSERVNUDGE;
+      armRotate(currentAngle);
+      armStatus = armGoTo(ARMPOSOUT);
+    } else if (armStatus == RIGHT) {
+      currentAngle = currentAngle + ARMSERVNUDGE;
+      armRotate(currentAngle);
+      armStatus = armGoTo(ARMPOSOUT);
+    } else {
+      armStatus = armGoTo(ARMPOSOUT);
+    }
+  }
   gripperClose();
 }
 
 void armDropPassenger() {
-  armGoTo(ARMLOWIN1, ARMLOWIN2);
-  armGoTo(ARMHIGHIN1, ARMHIGHIN2);
-  if (numPassengers >= 2) { 
-    armRotate(ARMSERVREST);
-    return;
-  } else if (numPassengers == 0) {
-    armRotate(ARMBOX0);
-    gripperOpen();
-  } else if (numPassengers == 1) {
-    armRotate(ARMBOX1);
-    gripperOpen();
-  }
-  armRotate(45);
-  armGoTo(ARMREST1, ARMREST2);
+  armRotate(ARMSERVOUT);
+  armForceGoTo(ARMPOSOUT);
+  gripperOpen();
+  armForceGoTo(ARMPOSIN);
   armRotate(ARMSERVREST); 
 }
 
@@ -26,31 +31,59 @@ void armRotate(int angle) {
   RCServo0.write(angle);
 }
 
-void armGoTo(int shoulderDest, int elbowDest) {
-  int shoulderMin = shoulderDest - ARMTOLERANCE;
-  int shoulderMax = shoulderDest + ARMTOLERANCE;
-  int elbowMin = elbowDest - ARMTOLERANCE;
-  int elbowMax = elbowDest + ARMTOLERANCE;
+int armGoTo(int armDest) {
+  int armMin = armDest - ARMTOLERANCE;
+  int armMax = armDest + ARMTOLERANCE;
 
-  int shoulder = analogRead(ARMPOS1);
+  int arm = analogRead(ARMPOS1);
   
-  while ((shoulder > shoulderMax) && (shoulder < shoulderMin)){
-    if (shoulder > shoulderMax) {
+  while ((arm > armMax) && (arm < armMin)){
+    if (arm > armMax) {
       motor.speed(ARMMOTOR1, ARMSPEEDNEG);
-    } else if (shoulder < shoulderMin) {
+    } else if (arm < armMin) {
       motor.speed(ARMMOTOR1, ARMSPEEDPOS);
     } else {
       motor.speed(ARMMOTOR1, 0);
     }
 
-    shoulder = analogRead(ARMPOS1);
+    arm = analogRead(ARMPOS1);
 
-    if (digitalRead(GRIPBUMP))
-      break;
+    if (digitalRead(GRIPBUMP)) {
+      return STRAIGHT;
+    }
+    
+    if (digitalRead(RGRIPBUMP)) {
+      return LEFT;
+    } else if (digitalRead(LGRIPBUMP)) {
+      return RIGHT;
+    }
   }
 
 // in case the motor hit the switch and didn't stop!
   motor.speed(ARMMOTOR1, 0);
-  motor.speed(ARMMOTOR2, 0);
+}
+
+// Goes to armDest without looking at any of the switches
+int armForceGoTo(int armDest) {
+  int armMin = armDest - ARMTOLERANCE;
+  int armMax = armDest + ARMTOLERANCE;
+
+  int arm = analogRead(ARMPOS1);
+  
+  while ((arm > armMax) && (arm < armMin)){
+    if (arm > armMax) {
+      motor.speed(ARMMOTOR1, ARMSPEEDNEG);
+    } else if (arm < armMin) {
+      motor.speed(ARMMOTOR1, ARMSPEEDPOS);
+    } else {
+      motor.speed(ARMMOTOR1, 0);
+    }
+
+    arm = analogRead(ARMPOS1);
+  }
+
+// in case the motor hit the switch and didn't stop!
+  motor.speed(ARMMOTOR1, 0);
+  return 0;
 }
 
