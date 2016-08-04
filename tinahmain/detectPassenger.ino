@@ -1,27 +1,46 @@
-#define IR_THRESH 100
-#define MAX_NOISE_AMP 10
+#define IR_THRESH 500
+#define MAX_NOISE_AMP 20
 
 void detectPassenger(){
   if (analogRead(IRLEFT) > IR_THRESH) {
     //passenger detected on the left
-    //turn on a dime
-    if(analogRead(IRLEFT)<IRVal){
+    //don't turn on a dime
+    if(analogRead(IRLEFT)< (IRVal-MAX_NOISE_AMP)){
       hardStop();
+      LCD.clear();
+      LCD.setCursor(0,0);
+      LCD.print("L IRVal: ");
+      LCD.print(IRVal);
+      LCD.setCursor(0,1);
+      LCD.print("START to pickup");
+      while(!startbutton()) {
+        //just chill
+      }
       IRVal = 0;
     } else {
       IRVal = analogRead(IRLEFT);
     }
-    motor.speed(LMOTOR, -200);
-    motor.speed(RMOTOR, 200);
-
-  } else if (analogRead(IRRIGHT) > IR_THRESH) {
-    if(analogRead(IRRIGHT)<IRVal){
-      hardStop();
-      IRVal = 0;
-    } else {
-      IRVal = analogRead(IRRIGHT);
-    }
-  }
+    Serial.println(IRVal);
+  } 
+//  else if (analogRead(IRRIGHT) > IR_THRESH) {
+//    if(analogRead(IRRIGHT)<IRVal){
+//      hardStop();
+//      IRVal = 0;
+//    } else {
+//      IRVal = analogRead(IRRIGHT);
+//    }
+//    LCD.clear();
+//    LCD.setCursor(0,0);
+//    LCD.print("R IRVal: ");
+//    LCD.print(IRVal);
+//    LCD.setCursor(0,1);
+//    LCD.print("START to U_turn");
+//    while(!startbutton()) {
+//      //just chill
+//    }
+//    motor.speed(LMOTOR, -200);
+//    motor.speed(RMOTOR, 200);
+//  }
   pickupPassenger();
 }
 

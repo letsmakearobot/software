@@ -1,6 +1,6 @@
 void handleCollision() {
   int temp;
-
+  motor.stop_all();
   LCD.clear();
   LCD.setCursor(0,0);
   LCD.print("collided");

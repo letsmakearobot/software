@@ -70,3 +70,18 @@ void initializeRobot() {
     }
   }
 }
+void initializeRobot2() {
+  left = !digitalRead(LTAPE);
+  right = !digitalRead(RTAPE);
+  leftint = !digitalRead(LINTTAPE);
+  rightint = !digitalRead(RINTTAPE);
+
+    LCD.clear();
+    LCD.setCursor(0,0);
+    LCD.print("PRERUN- LT:");
+    LCD.print(left);
+    LCD.setCursor(0, 1);
+    labelPrint("RT", right, "LI", leftint, "RI", rightint);
+//    // Serial.print("initializing");
+}
+

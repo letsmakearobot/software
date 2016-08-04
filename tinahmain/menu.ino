@@ -1,4 +1,4 @@
-void Menu(int okp, int okd) {
+void motorMenu(int okp, int okd) {
   int value1 = knob(6);
   int value2 = knob(7);
   int count = 0;
@@ -36,3 +36,29 @@ void Menu(int okp, int okd) {
   kd = value2;
   delay(500);
 }
+void servoMenu() {
+  int angle = ARMSERVREST;
+
+  while(! startbutton()) {
+    angle = knob(6)/3;
+    LCD.clear();
+    LCD.setCursor(0,0);
+    LCD.print("angle: ");
+    LCD.print(angle);
+    LCD.setCursor(0,1);
+    LCD.print("START to write");
+  }
+  armRotate(angle);
+  while(! stopbutton()) {
+    angle = knob(6)/3;
+    LCD.clear();
+    LCD.setCursor(0,0);
+    LCD.print("angle: ");
+    LCD.print(angle);
+    LCD.setCursor(0,1);
+    LCD.print("STOP to write");    
+  }
+  armRotate(angle);
+  delay(200);
+}
+//void nodeMenu(i
