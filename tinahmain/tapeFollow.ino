@@ -21,12 +21,12 @@ void tapeFollow() {
     m = 1;
   }
 
-  p = kp * err;
-  d = (int)((float)kd * (float)(err - recerr) / (float)(q + m));
+  p = KP * err;
+  d = (int)((float)KD * (float)(err - recerr) / (float)(q + m));
   con = p + d;
 
-  l_motor = lbase + con;
-  r_motor = rbase - con;
+  l_motor = LBASE + con;
+  r_motor = RBASE - con;
 
   if (l_motor < -250) {
     l_motor = -250;

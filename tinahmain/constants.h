@@ -14,12 +14,18 @@
 //#define RENC1 13
 //#define RENC2 14
 
+// TAPE FOLLOWING CONSTANTS
+#define LBASE 120
+#define RBASE 120
+#define KP 40
+#define KD 80
+
 // ANALOG INPUTS
 #define IRFRONT 1
 #define IRFRONTLEFT 2
 #define IRFRONTRIGHT 3
-#define IRLEFT 4
-#define IRRIGHT 5
+#define IRLEFT 2
+#define IRRIGHT 3
 #define IRGRIP 6
 #define ARMPOS1 7
 

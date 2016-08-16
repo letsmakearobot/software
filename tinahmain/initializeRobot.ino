@@ -53,14 +53,14 @@ void initializeRobot() {
     
     if (!digitalRead(LINTTAPE)) {
       hardLeft();
-      lastNode = 10;
-      nextNode = 11;
+      lastNode = 0;
+      nextNode = 10;
       break;
     }
     if(!digitalRead(RINTTAPE)) {
       hardRight();
-      lastNode = 15;
-      nextNode = 14;
+      lastNode = 4;
+      nextNode = 15;
       break;
     }
 
@@ -70,3 +70,18 @@ void initializeRobot() {
     }
   }
 }
+void initializeRobot2() {
+  left = !digitalRead(LTAPE);
+  right = !digitalRead(RTAPE);
+  leftint = !digitalRead(LINTTAPE);
+  rightint = !digitalRead(RINTTAPE);
+
+    LCD.clear();
+    LCD.setCursor(0,0);
+    LCD.print("PRERUN- LT:");
+    LCD.print(left);
+    LCD.setCursor(0, 1);
+    labelPrint("RT", right, "LI", leftint, "RI", rightint);
+//    // Serial.print("initializing");
+}
+
